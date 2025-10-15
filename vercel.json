@@ -9,11 +9,10 @@
       }
     }
   ],
-  "framework": "vite",
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/"
+      "dest": "/index.html"
     }
   ]
 }
