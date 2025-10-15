@@ -1,0 +1,11 @@
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,Arial;background:#f7fafc;color:#0f172a}
+.container{max-width:1100px;margin:0 auto;padding:1rem}
+.header{padding:1rem 0;background:linear-gradient(180deg,#fff,transparent);position:sticky;top:0}
+.header .brand{font-weight:700}
+.button{padding:0.5rem 0.8rem;border-radius:8px;text-decoration:none;border:1px solid transparent;cursor:pointer}
+.primary{background:#2563eb;color:#fff}
+.card{background:#fff;padding:1rem;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.04);margin-bottom:1rem}
+.grid{display:grid;grid-template-columns:1fr 360px;gap:1rem}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
