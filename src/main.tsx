@@ -1,25 +1,18 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { WagmiConfig, createConfig } from 'wagmi'
-import { bscTestnet } from 'wagmi/chains'
-import { http } from 'viem'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import { WagmiProvider } from "wagmi";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { config, queryClient } from "./lib/wagmi";
+import "./index.css";
 
-const RPC_URL = import.meta.env.VITE_RPC_URL || 'https://data-seed-prebsc-1-s1.binance.org:8545/'
-
-const config = createConfig({
-  chains: [bscTestnet],
-  transports: {
-    [bscTestnet.id]: http(RPC_URL),
-  },
-  ssr: false,
-})
-
-createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <WagmiConfig config={config}>
-      <App />
-    </WagmiConfig>
+    <QueryClientProvider client={queryClient}>
+      <WagmiProvider config={config}>
+        <App />
+      </WagmiProvider>
+    </QueryClientProvider>
   </React.StrictMode>
-)
+);
+

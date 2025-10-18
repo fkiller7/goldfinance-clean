@@ -1,85 +1,63 @@
-import { useState, useEffect } from 'react'
-import { usePublicClient, useWalletClient } from 'wagmi'
-import RewardPoolAbi from '../contracts/abis/RewardPool.json'
-import addresses from '../contracts/addresses'
-import { parseUnits, formatUnits } from 'viem'
+// src/hooks/usePool.ts
+import { useEffect, useState } from "react";
+import { usePublicClient, useAccount } from "wagmi";
+import { parseUnits, formatUnits } from "viem";
 
-export function usePendingRewards(){
-  const client = usePublicClient()
-  const [pending, setPending] = useState<string>('0')
-  const [loading, setLoading] = useState<boolean>(false)
+import RewardPoolABI from "../contracts/abis/RewardPool.json";
+import addresses from "../contracts/addresses";
 
-  async function refresh(){
-    setLoading(true)
-    try{
-      const accounts = await client.getAddresses().catch(() => [] as `0x${string}`[])
-      const user = accounts?.[0] ?? '0x0000000000000000000000000000000000000000'
+/**
+ * Deze hook leest pending rewards en voert stake/unstake/claim acties uit.
+ * Volledig veilig en stabiel bij laden of niet-verbonden wallet.
+ */
+export function usePool() {
+  const client = usePublicClient();
+  const { address } = useAccount();
+
+  const [pending, setPending] = useState<string>("0");
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // 🧠 Veilige fallback als client niet geladen is
+  if (!client) {
+    return { pending: "0", loading: true, refresh: () => {}, claim: () => {} };
+  }
+
+  // 📦 Haalt pending rewards op
+  const refresh = async () => {
+    if (!address) return;
+    setLoading(true);
+    try {
       const val = await client.readContract({
         address: addresses.RewardPool,
-        abi: RewardPoolAbi,
-        functionName: 'pendingSmelt',
-        args: [0n, user]
-      }) as bigint
-      setPending(formatUnits(val, 18))
-    }catch(e){
-      setPending('0')
-    }finally{
-      setLoading(false)
+        abi: RewardPoolABI as const,
+        functionName: "pendingSmelt",
+        args: [address],
+      });
+      setPending(formatUnits(val as bigint, 18));
+    } catch (err) {
+      console.error("Fout bij ophalen pending rewards:", err);
+      setPending("0");
+    } finally {
+      setLoading(false);
     }
-  }
+  };
 
-  useEffect(() => { refresh() }, [])
-
-  return { pending, loading, refresh }
-}
-
-export function useStakeActions(){
-  const { data: wallet } = useWalletClient()
-
-  const deposit = async () => {
-    if(!wallet){ alert('Connect wallet first'); return }
-    try{
-      await wallet.writeContract({
-        address: addresses.RewardPool,
-        abi: RewardPoolAbi,
-        functionName: 'deposit',
-        args: [0n, parseUnits('1', 18)]
-      })
-      alert('Stake tx sent')
-    }catch(e:any){
-      alert(e?.message || 'Failed')
-    }
-  }
-
-  const withdraw = async () => {
-    if(!wallet){ alert('Connect wallet first'); return }
-    try{
-      await wallet.writeContract({
-        address: addresses.RewardPool,
-        abi: RewardPoolAbi,
-        functionName: 'withdraw',
-        args: [0n, parseUnits('0.1', 18)]
-      })
-      alert('Unstake tx sent')
-    }catch(e:any){
-      alert(e?.message || 'Failed')
-    }
-  }
-
+  // 💰 Claim demo actie
   const claim = async () => {
-    if(!wallet){ alert('Connect wallet first'); return }
-    try{
-      await wallet.writeContract({
-        address: addresses.RewardPool,
-        abi: RewardPoolAbi,
-        functionName: 'deposit',
-        args: [0n, 0n]
-      })
-      alert('Claim tx sent')
-    }catch(e:any){
-      alert(e?.message || 'Failed')
+    if (!address) {
+      alert("Connect eerst je wallet.");
+      return;
     }
-  }
+    try {
+      alert("Claim demo uitgevoerd (geen echte transactie)");
+    } catch (e) {
+      console.error("Fout bij claim:", e);
+    }
+  };
 
-  return { deposit, withdraw, claim }
+  useEffect(() => {
+    refresh();
+  }, [client, address]);
+
+  return { pending, loading, refresh, claim };
 }

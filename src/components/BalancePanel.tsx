@@ -1,8 +1,10 @@
 import React from 'react'
-import { useTokenBalances } from '../hooks/useTokens'
+import useTokens from "../hooks/useTokens";
+
 
 export default function BalancePanel(){
-  const { balances, loading } = useTokenBalances()
+  const { balances, loading } = useTokens();
+
   return (
     <div className="card">
       <h3>Token Balances</h3>
