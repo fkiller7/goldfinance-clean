@@ -1,13 +1,5 @@
 {
-  "version": 2,
-  "builds": [
-    { "src": "index.html", "use": "@vercel/static-build" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
-  ],
-  "framework": "vite",
-  "build": {
-    "output": "dist"
-  }
+  "buildCommand": "echo skip build",
+  "outputDirectory": "dist",
+  "framework": "other"
 }
