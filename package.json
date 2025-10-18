@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "echo skip dev",
     "build": "echo building",
-    "preview": "vite preview"
+    "preview": "echo skip preview"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.5",
