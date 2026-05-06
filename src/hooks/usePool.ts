@@ -4,7 +4,8 @@ import { usePublicClient, useAccount } from "wagmi";
 import { parseUnits, formatUnits } from "viem";
 
 import RewardPoolABI from "../contracts/abis/RewardPool.json";
-import addresses from "../contracts/addresses";
+import  CONTRACTS  from "../contracts/addresses";
+
 
 /**
  * Deze hook leest pending rewards en voert stake/unstake/claim acties uit.

@@ -1,0 +1,30 @@
+.boardroom-container {
+    background: linear-gradient(145deg, #0b0b0c, #18181a);
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(255, 191, 0, 0.15);
+    padding: 30px;
+    color: #fff;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .boardroom-header {
+    color: #ffbf00;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .data-item {
+    margin-bottom: 12px;
+  }
+  
+  .data-label {
+    font-weight: 500;
+    opacity: 0.85;
+  }
+  
+  .data-value {
+    font-size: 1.1rem;
+    color: #ffbf00;
+  }
+  

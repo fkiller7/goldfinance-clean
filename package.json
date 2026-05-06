@@ -8,16 +8,55 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^5.4.0",
     "@tanstack/react-query": "^5.90.5",
-    "ethers": "^6.8.0",
+    "lucide-react": "^0.546.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "viem": "^2.38.3",
-    "wagmi": "^2.18.1"
+    "react-router-dom": "^7.9.4",
+    "viem": "^2.38.4",
+    "vite": "^7.1.12",
+    "wagmi": "^2.18.2"
   },
   "devDependencies": {
+    "@chainlink/contracts": "^1.4.0",
+    "@nomicfoundation/hardhat-chai-matchers": "^2.1.0",
+    "@nomicfoundation/hardhat-ethers": "^3.1.0",
+    "@nomicfoundation/hardhat-ignition": "^3.0.3",
+    "@nomicfoundation/hardhat-network-helpers": "^3.0.1",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@nomicfoundation/hardhat-toolbox-viem": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.3",
+    "@typechain/ethers-v6": "^0.5.1",
+    "@typechain/hardhat": "^9.1.0",
+    "@types/node": "^22.18.12",
     "@vitejs/plugin-react": "^4.3.1",
-    "typescript": "^5.6.2"
-    
-  }
+    "chai": "^4.3.7",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.16.0",
+    "forge-std": "github:foundry-rs/forge-std#v1.9.4",
+    "hardhat": "^2.17.0",
+    "hardhat-gas-reporter": "^2.3.0",
+    "solidity-coverage": "^0.8.16",
+    "ts-node": "^10.9.2",
+    "typechain": "^8.3.2",
+    "typescript": "~5.8.0"
+  },
+  "type": "module",
+  "description": "TypeScript + React + Vite + wagmi/viem + ethers - UI met Goldcoin (GOLD) en Goldshare (GSHARE) - BSC Testnet RPC via `.env` - ABI-stubs voor ERC20 en RewardPool (vervang voor productie) - Vercel-ready (`vercel.json` aanwezig)",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fkiller7/goldfinance-clean.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fkiller7/goldfinance-clean/issues"
+  },
+  "homepage": "https://github.com/fkiller7/goldfinance-clean#readme"
 }

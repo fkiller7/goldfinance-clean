@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+.vite/
+
+# Environment & secrets — NEVER COMMIT
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Hardhat
+artifacts/
+cache/
+coverage/
+typechain-types/
+deployed-addresses*.json
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Backup files
+*.backup
+*.backup2
+src/contracts/abis_old_backup/
+src/contracts/abis_v1_backup/
+contracts/old/
+scripts/old/
+
+# Misc
+.eslintcache
+.parcel-cache

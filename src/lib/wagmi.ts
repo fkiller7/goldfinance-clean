@@ -1,21 +1,18 @@
 import { http, createConfig } from "wagmi";
-import { mainnet, bsc, arbitrum } from "wagmi/chains";
-import { createClient } from "viem";
+import { mainnet, arbitrum, bsc } from "wagmi/chains";
 import { QueryClient } from "@tanstack/react-query";
 
-// 👇 Dit maakt een nieuwe wagmi-config (v2 stijl)
+// 🧠 Nieuwe query client voor React Query
 export const queryClient = new QueryClient();
 
+// 🌍 Wagmi-config met multi-chain support (BSC, Arbitrum, Ethereum)
 export const config = createConfig({
-  chains: [bsc, arbitrum, mainnet], // je kan later extra chains toevoegen
+  chains: [bsc, arbitrum, mainnet],
   transports: {
     [bsc.id]: http("https://bsc-dataseed.binance.org"),
     [arbitrum.id]: http("https://arb1.arbitrum.io/rpc"),
     [mainnet.id]: http("https://eth.llamarpc.com"),
   },
-  client: createClient({
-    chain: bsc,
-    transport: http(),
-  }),
-  ssr: false, // belangrijk voor Next/Vite
+  multiInjectedProviderDiscovery: false, // voorkomt dubbele detectie van wallets
+  ssr: false, // belangrijk voor Vite/React
 });

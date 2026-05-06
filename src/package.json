@@ -1,0 +1,20 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ethers": "^6.15.0",
+    "viem": "^2.38.4",
+    "wagmi": "^2.18.2"
+  }
+}
